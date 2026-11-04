@@ -1,0 +1,22 @@
+/* Chapter cards, endings, big overlays */
+#card{position:absolute;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:rgba(5,7,13,.82);text-align:center;padding:20px;gap:16px}
+#card .cnum{font-size:10px;color:#9fb0d8;letter-spacing:3px}
+#card .ctitle{font-size:clamp(16px,5vw,30px);color:#ffd97a;text-shadow:0 3px 0 #3a2405,0 0 24px rgba(255,180,60,.35);line-height:1.7}
+#card .csub{font-size:8px;color:#8a97b8;max-width:70vw;line-height:2}
+#card .rule{width:120px;height:3px;background:#ffd97a;box-shadow:0 0 12px rgba(255,180,60,.6)}
+/* endings */
+#endScr{position:absolute;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(4,6,11,.94)}
+#endInner{width:min(640px,94vw);max-height:92vh;overflow:auto;padding:22px 20px;display:flex;flex-direction:column;gap:14px;align-items:center;text-align:center}
+#endKind{font-size:8px;letter-spacing:2px;color:#9fb0d8}
+#endTitle{font-size:clamp(15px,4.6vw,24px);line-height:1.7;text-shadow:0 2px 0 #000}
+#endTitle.bad{color:#ff9d8f}#endTitle.good{color:#aef2b0}#endTitle.secret{color:#cfa9ff}
+#endBody{font-size:9px;line-height:2.1;color:#e8e4d4;white-space:pre-wrap}
+#endFoot{font-size:8px;color:#ffd97a}
+/* title */
+#titleScr{position:absolute;inset:0;z-index:65;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+#tLogo{font-size:clamp(22px,7vw,44px);color:#f2b04a;letter-spacing:4px;text-shadow:0 4px 0 #57220a,0 0 30px rgba(242,176,74,.35);line-height:1.6}
+#tSub{font-size:9px;color:#9fb0d8;letter-spacing:2px}
+#tMenu{display:flex;flex-direction:column;gap:9px;margin-top:18px;width:min(320px,84vw)}
+#tMenu .pbtn{font-size:9px}
+#tFoot{position:absolute;bottom:10px;font-size:7px;color:#5b6880}

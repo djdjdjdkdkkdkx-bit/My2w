@@ -1,0 +1,47 @@
+'use strict';
+/* ===== deco & prop painters (trees, cacti, chests, icons...) ===== */
+function buildDecos() {
+  const D = SPR.decos;
+  D.tree = [0, 1].map(v => mk(16, 26, g => { px(g, 7, 16, '#5e4629', 3, 9); px(g, 6, 20, '#4a3226', 5, 2);
+    const c1 = v ? '#2f6b36' : PAL.leaf1, c2 = v ? '#3f8f4a' : PAL.leaf2, c3 = v ? '#57a85f' : PAL.leaf3;
+    px(g, 2, 6, c1, 12, 8); px(g, 4, 2, c2, 9, 6); px(g, 3, 12, c1, 10, 3); px(g, 5, 4, c3, 4, 2); px(g, 10, 8, c3, 3, 2); }));
+  D.pine = [0, 1].map(v => mk(16, 26, g => { px(g, 7, 20, '#4a3226', 2, 6); const c = v ? '#1f5a4a' : '#24563a';
+    px(g, 4, 12, c, 8, 6); px(g, 3, 7, c, 10, 5); px(g, 5, 2, c, 6, 5); px(g, 6, 0, v ? '#2a6e5a' : '#2f6b46', 4, 3); }));
+  D.cactus = [0, 1].map(v => mk(16, 24, g => { px(g, 6, 6, '#4f8a4f', 4, 16); px(g, 6, 6, '#6fae6a', 1, 16);
+    px(g, 2, 10, '#4f8a4f', 4, 2); px(g, 2, 8, '#4f8a4f', 2, 4); px(g, 10, 13, '#4f8a4f', 4, 2); px(g, 12, 10, '#4f8a4f', 2, 5);
+    if (v) px(g, 7, 9, '#ffe08a', 1, 1); }));
+  D.rock = [0, 1].map(v => mk(16, 14, g => { px(g, 3, 4, PAL.rock2, 10, 8); px(g, 5, 2, PAL.rock1, 7, 4); px(g, 4, 10, '#3a3f4c', 9, 2); if (v) px(g, 8, 4, '#8a90a0', 2, 2); }));
+  D.bush = [0, 1].map(v => mk(16, 12, g => { px(g, 3, 3, PAL.leaf1, 10, 7); px(g, 5, 1, PAL.leaf2, 6, 4); px(g, 4, 9, '#2f6b36', 8, 2); if (v) px(g, 6, 4, '#ff9db0', 2, 2); }));
+  D.flowerB = [0, 1].map(v => mk(16, 12, g => { g.clearRect(0, 0, 16, 12); px(g, 2, 6, '#2f6b36', 12, 4); const c = v ? '#ffe08a' : '#ff9db0';
+    px(g, 3, 4, c, 2, 2); px(g, 7, 2, c, 2, 2); px(g, 11, 5, c, 2, 2); px(g, 4, 3, '#fff', 1, 1); }));
+  D.reed = [0, 1].map(v => mk(16, 14, g => { g.clearRect(0, 0, 16, 14); g.strokeStyle = '#7a8f5a'; for (let i = 0; i < 4; i++) { g.beginPath(); g.moveTo(3 + i * 3, 13); g.lineTo(4 + i * 3 + (v ? 1 : 0), 2); g.stroke(); } }));
+  D.skull = [mk(16, 12, g => { px(g, 4, 4, PAL.bone, 8, 6); px(g, 5, 6, '#8a8a98', 2, 2); px(g, 9, 6, '#8a8a98', 2, 2); px(g, 6, 9, PAL.bone, 4, 2); px(g, 2, 9, PAL.bone, 3, 2); px(g, 11, 9, PAL.bone, 3, 2); })];
+  D.stump = [mk(16, 12, g => { px(g, 4, 5, '#5e4629', 8, 6); px(g, 4, 4, '#8a6a42', 8, 3); px(g, 6, 5, '#a08a5a', 4, 1); })];
+  D.chest = mk(16, 14, g => { px(g, 2, 5, '#6f5433', 12, 8); px(g, 2, 3, '#8a6a42', 12, 4); px(g, 2, 7, '#4a3226', 12, 1);
+    px(g, 7, 6, '#ffd97a', 2, 3); px(g, 2, 3, '#ffd97a', 12, 1); });
+  D.chestO = mk(16, 14, g => { px(g, 2, 7, '#4a3226', 12, 6); px(g, 1, 1, '#8a6a42', 14, 3); px(g, 2, 4, '#ffd97a', 12, 1); px(g, 7, 7, '#0a0c14', 2, 2); });
+  D.camp = [0, 1, 2].map(v => mk(16, 16, g => { g.clearRect(0, 0, 16, 16); px(g, 2, 12, '#5e4629', 12, 3); px(g, 4, 11, '#4a3226', 8, 2);
+    const h = [6, 8, 10][v]; px(g, 7, 16 - h, '#f2b04a', 3, h); px(g, 6, 16 - h + 1, '#ffd97a', 2, h - 2); px(g, 9, 14, '#c95a1e', 2, 2); }));
+  D.well = mk(16, 20, g => { px(g, 3, 8, PAL.rock1, 10, 10); px(g, 4, 9, PAL.rock2, 8, 8); px(g, 6, 10, PAL.water1, 4, 4);
+    px(g, 2, 2, '#5e4629', 2, 8); px(g, 12, 2, '#5e4629', 2, 8); px(g, 2, 0, PAL.roof1, 12, 3); px(g, 7, 4, '#6f5433', 2, 4); });
+  D.sign = mk(16, 16, g => { px(g, 7, 8, '#5e4629', 2, 8); px(g, 3, 3, '#8a6a42', 10, 6); px(g, 4, 4, '#5e4629', 8, 1); px(g, 4, 6, '#5e4629', 6, 1); });
+  D.grave = [0, 1].map(v => mk(16, 14, g => { px(g, 4, 2, PAL.rock1, 8, 10); px(g, 5, 3, PAL.rock2, 6, 8); px(g, 3, 11, '#3a3f4c', 10, 2); if (v) px(g, 6, 5, '#8a8a98', 1, 3); }));
+  D.shrine = mk(20, 26, g => { px(g, 2, 20, PAL.rock1, 16, 5); px(g, 5, 6, PAL.rock1, 10, 15); px(g, 6, 7, PAL.rock2, 8, 13);
+    px(g, 8, 9, '#f2b04a', 4, 5); px(g, 9, 10, '#ffd97a', 2, 3); px(g, 3, 2, PAL.rock1, 14, 4); px(g, 8, 0, '#ffd97a', 4, 3); });
+  D.kiln = mk(18, 22, g => { px(g, 2, 6, PAL.rock1, 14, 14); px(g, 3, 7, PAL.rock2, 12, 12); px(g, 6, 12, '#c95a1e', 6, 7);
+    px(g, 7, 13, '#f2b04a', 4, 5); px(g, 6, 2, PAL.rock1, 6, 5); px(g, 7, 0, '#ffd97a', 3, 3); });
+  D.tablet = mk(16, 16, g => { px(g, 4, 2, PAL.cave2, 8, 12); px(g, 5, 3, '#54648c', 6, 10); px(g, 6, 5, '#9fe8ff', 4, 1); px(g, 6, 8, '#9fe8ff', 3, 1); });
+  D.emberheart = [0, 1, 2].map(v => mk(26, 30, g => { const a = v * 0.12; px(g, 8, 10, '#8a3a14', 10, 14); px(g, 6, 12, '#c95a1e', 14, 10);
+    px(g, 10, 8, '#f2b04a', 6, 12); px(g, 12, 6, '#ffd97a', 3, 8); px(g, 13, 3, 'rgba(255,217,122,' + (0.5 + a) + ')', 1, 5);
+    px(g, 6, 24, '#5e4629', 14, 4); }));
+  D.bed = mk(16, 22, g => { px(g, 1, 4, '#5e4629', 14, 16); px(g, 2, 5, '#c95a5e', 12, 8); px(g, 2, 12, '#ffe08a', 12, 6); px(g, 3, 5, PAL.bone, 10, 3); });
+  D.anvil = mk(16, 14, g => { px(g, 3, 8, PAL.rock2, 10, 4); px(g, 5, 6, '#54648c', 6, 3); px(g, 4, 4, '#8a90a0', 8, 3); });
+  D.furnace = mk(16, 18, g => { px(g, 2, 4, PAL.rock2, 12, 13); px(g, 4, 8, '#c95a1e', 8, 6); px(g, 5, 9, '#f2b04a', 6, 4); px(g, 2, 2, PAL.rock1, 12, 3); });
+  D.arch = mk(16, 20, g => { px(g, 0, 2, PAL.cave1, 16, 18); px(g, 2, 4, '#000814', 12, 16); px(g, 1, 0, PAL.rock2, 14, 3); });
+  D.boat = mk(20, 14, g => { px(g, 2, 6, '#5e4629', 16, 4); px(g, 4, 4, '#6f5433', 12, 3); px(g, 3, 9, '#4a3226', 14, 2); });
+  D.umbrella = mk(18, 22, g => { px(g, 8, 8, '#5e4629', 2, 12); px(g, 2, 2, '#c95a5e', 14, 7); px(g, 3, 1, '#a33b3b', 12, 2); });
+  D.sink = mk(20, 16, g => { px(g, 4, 6, '#0a0c14', 12, 8); px(g, 2, 4, PAL.cave1, 16, 3); px(g, 6, 8, '#141a26', 8, 4); });
+  D.moss = [0, 1].map(v => mk(16, 12, g => { g.clearRect(0, 0, 16, 12); px(g, 2, 4, '#4f8a6a', 8, 6); px(g, 3, 2, '#6fae8a', 5, 3); px(g, 9, 3, '#6fae8a', 3, 2); if (v) px(g, 5, 5, '#9fe8ff', 1, 1); }));
+  D.fence = mk(16, 14, g => { px(g, 0, 6, PAL.wood2, 16, 2); px(g, 3, 2, PAL.wood1, 2, 11); px(g, 11, 2, PAL.wood1, 2, 11); });
+  D.table = mk(16, 14, g => { px(g, 2, 4, '#8a6a42', 12, 4); px(g, 3, 8, '#5e4629', 2, 5); px(g, 11, 8, '#5e4629', 2, 5); px(g, 4, 3, '#c9b08a', 4, 2); });
+}

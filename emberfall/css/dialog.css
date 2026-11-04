@@ -1,0 +1,12 @@
+/* Dialogue */
+#dlg{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;padding:0 10px 14px;z-index:40}
+#dlgBox{width:min(660px,94vw);pointer-events:auto;padding:12px 14px 10px;position:relative}
+#dlgName{position:absolute;top:-12px;left:10px;background:#242c44;padding:4px 10px;font-size:8px;color:#ffd97a;
+  border:2px solid #10141f;border-radius:4px;box-shadow:0 0 0 2px #05070d,inset 0 0 0 2px #465273}
+#dlgText{font-size:9px;line-height:1.9;min-height:52px;color:#efe9d8;text-shadow:1px 1px 0 #000;white-space:pre-wrap}
+#dlgText .em{color:#ffd97a}
+#dlgChoices{display:flex;flex-direction:column;gap:5px;margin-top:9px}
+#dlgChoices .pbtn{font-size:8px;justify-content:flex-start;padding:8px 10px;text-align:left;line-height:1.5}
+#dlgChoices .pbtn.sel::before{content:'›';margin-right:6px;color:#ffd97a}
+#dlgHint{position:absolute;right:10px;bottom:6px;font-size:8px;color:#6f80ab;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:.15}}

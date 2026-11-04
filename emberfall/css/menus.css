@@ -1,0 +1,26 @@
+/* Pause / inventory / quests / shop / map overlays */
+#menuScr{position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(4,6,11,.72);pointer-events:auto}
+#menuBox{width:min(760px,96vw);max-height:92vh;display:flex;flex-direction:column;gap:10px;padding:14px}
+#menuTabs{display:flex;gap:6px;flex-wrap:wrap}
+#menuTabs .pbtn{font-size:8px;padding:8px 10px}
+#menuBody{flex:1;overflow:auto;min-height:180px;max-height:60vh;display:flex;gap:12px}
+#menuFoot{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.sec{font-size:8px;color:#ffd97a;letter-spacing:1px;margin:10px 0 6px}
+.row{display:flex;align-items:center;gap:10px;padding:7px 8px;border-radius:4px;font-size:8px;line-height:1.6;
+  background:rgba(255,255,255,.03);border:2px solid transparent}
+.row.sel{border-color:#6f80ab;background:rgba(110,140,200,.12)}
+.row canvas{width:20px;height:20px;image-rendering:pixelated;flex:none}
+.row .grow{flex:1;min-width:0}
+.row .mut{color:#8a97b8;font-size:7px}
+.row .eq{color:#8fe08f}
+.col{flex:1;min-width:260px;display:flex;flex-direction:column;gap:5px}
+.col.side{max-width:210px;font-size:7px;line-height:1.9;color:#9fb0d8}
+.side b{color:#ffd97a}
+.kv{display:flex;justify-content:space-between;gap:8px;font-size:8px}
+.kv b{color:#ffe9b0}
+.list{display:flex;flex-direction:column;gap:5px}
+#mapCv{width:min(560px,88vw);height:auto;image-rendering:pixelated;border-radius:4px;background:#0a0c14}
+.hintline{font-size:7px;color:#8a97b8;line-height:1.8;margin-top:8px}
+input.txt{font:inherit;font-size:10px;color:#ffd97a;background:#10141f;border:2px solid #10141f;border-radius:4px;
+  box-shadow:inset 0 0 0 2px #465273;padding:9px 10px;outline:none;pointer-events:auto;width:100%}
+.tog{min-width:150px}

@@ -1,0 +1,23 @@
+/* Touch controls */
+#touch{position:absolute;inset:0;z-index:20;pointer-events:none}
+#stickZone{position:absolute;left:0;bottom:0;width:44%;height:60%;pointer-events:auto}
+#stickN{position:absolute;width:74px;height:74px;margin:-37px;border-radius:50%;
+  background:rgba(30,38,60,.35);border:2px solid rgba(140,160,200,.4);display:none}
+#stickN i{position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px;border-radius:50%;
+  background:rgba(200,215,255,.5);border:2px solid rgba(240,245,255,.6)}
+#btnsR{position:absolute;right:10px;bottom:16px;display:flex;align-items:flex-end;gap:10px;pointer-events:auto}
+#btnsTop{position:absolute;right:10px;top:150px;display:flex;flex-direction:column;gap:8px;pointer-events:auto}
+.tbtn{width:62px;height:62px;border-radius:50%;font:inherit;font-size:10px;color:#e8e4d4;
+  background:rgba(36,44,68,.8);border:2px solid #10141f;box-shadow:0 0 0 2px #05070d,inset 0 0 0 2px #465273;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;cursor:pointer}
+.tbtn small{font-size:6px;color:#9fb0d8}
+.tbtn:active,.tbtn.press{transform:scale(.94);background:rgba(70,84,130,.9)}
+.tbtn.big{width:74px;height:74px;background:rgba(58,42,48,.85)}
+.tbtn.useb{background:rgba(36,60,50,.85)}
+.tbtn.potb{width:48px;height:48px;font-size:8px}
+.tbtn.menb{width:44px;height:44px;font-size:8px}
+#potBadge{position:absolute;top:-4px;right:-4px;background:#ffd97a;color:#3a2405;font-size:7px;padding:2px 4px;border-radius:6px;border:1px solid #57220a}
+@media (max-height:420px){
+  .tbtn{width:52px;height:52px;font-size:9px}.tbtn.big{width:62px;height:62px}
+  #btnsTop{top:auto;bottom:110px;right:auto;left:10px;flex-direction:row}
+}

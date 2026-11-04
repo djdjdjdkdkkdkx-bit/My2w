@@ -1,0 +1,28 @@
+/* HUD */
+#hud{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;padding:8px;gap:8px;z-index:10}
+#hudL{display:flex;flex-direction:column;gap:5px;min-width:150px}
+#namePlate{display:flex;align-items:baseline;gap:8px;font-size:9px;color:#ffd97a;text-shadow:1px 1px 0 #000}
+#namePlate small{font-size:7px;color:#9fb0d8}
+.bar.hp{width:150px}.bar.hp i{background:linear-gradient(#ff7a6b,#c0392b)}
+.bar.xp{width:150px;height:6px}.bar.xp i{background:linear-gradient(#7ee0ff,#2a7fb8)}
+#coinRow{display:flex;gap:10px;align-items:center;font-size:8px;color:#ffe9b0;text-shadow:1px 1px 0 #000}
+#coinRow canvas{width:14px;height:14px;image-rendering:pixelated}
+#coinRow b{min-width:16px}
+#hudR{display:flex;flex-direction:column;align-items:flex-end;gap:5px;max-width:46vw}
+#chapterTag{font-size:7px;color:#ffd97a;padding:7px 9px;line-height:1.5;text-align:right}
+#questTracker{font-size:7px;color:#cfe3ff;padding:7px 9px;max-width:170px;line-height:1.6;text-align:right}
+#questTracker b{color:#8fe08f;display:block}
+#miniWrap{position:relative}
+#mini{display:block;width:132px;height:99px;image-rendering:pixelated;border-radius:4px}
+#hudShards{font-size:7px;color:#9fe8ff;text-shadow:1px 1px 0 #000;display:flex;align-items:center;gap:6px}
+#hudShards canvas{width:12px;height:12px;image-rendering:pixelated}
+/* boss bar */
+#bossWrap{position:absolute;top:8px;left:50%;transform:translateX(-50%);text-align:center;z-index:12}
+#bossName{font-size:8px;color:#ffb3a1;text-shadow:1px 1px 0 #000;margin-bottom:4px;letter-spacing:1px}
+#bossBar{width:min(420px,60vw);height:10px;background:#05070d;border:2px solid #10141f;border-radius:3px;overflow:hidden;box-shadow:0 0 0 2px #05070d}
+#bossFill{height:100%;width:100%;background:linear-gradient(#ff5d7e,#8e1b3f);transition:width .12s}
+@media (max-width:640px){
+  #hudL{min-width:120px}.bar.hp{width:118px}.bar.xp{width:118px}
+  #chapterTag{max-width:34vw}#questTracker{max-width:34vw;font-size:6px}
+  #mini{width:96px;height:72px}
+}
