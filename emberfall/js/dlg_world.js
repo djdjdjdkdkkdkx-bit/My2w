@@ -5,7 +5,7 @@ DLG.nima = () => {
   if (!G.quests['q_lantern']) a.push({ c: [{ t: 'I\'ll find it. (quest)', f: () => addQuest('q_lantern'), go: '_close' }, { t: 'Kids and caves...', go: '_close' }] });
   else if (G.quests['q_lantern'].done) a.push(L('Nima', 'He sleeps with it lit. So do I, some nights.'));
   else if (invCount('childs_lantern') > 0) a.push(L('Nima', 'His lantern! You found it — take this charm; my mother stitched luck into the wick.'),
-    { do: () => { takeItem('childs_lantern'); advanceQuest('q_lantern'); questReward('q_lantern'); }, go: '_close' });
+    { do: () => { takeItem('childs_lantern'); completeQuest('q_lantern'); questReward('q_lantern'); }, go: '_close' });
   else a.push(L('Nima', 'Barrow Cave, north-west mountains. Careful — it bites.'));
   a.push(L('Nima', 'See the pier? The Seagrot door under it stays dark... until someone carries a lit charm. Yours is lit.'));
   return a;
@@ -16,7 +16,7 @@ DLG.hesan = () => {
     { c: [{ t: 'I\'ll gather them. (quest)', f: () => addQuest('q_remedy'), go: '_close' }, { t: 'Herbs are your trade.', go: '_close' }] });
   else if (G.quests['q_remedy'].done) a.push(L('Hesan', 'The remedy holds. Take the cloak — storms owe me favors, now they owe you none.'));
   else if (invCount('pollen') >= 2 && invCount('moss') >= 1) a.push(L('Hesan', 'You found them all. Breathe — the desert noticed.'),
-    { do: () => { takeItem('pollen', 2); takeItem('moss', 1); advanceQuest('q_remedy'); questReward('q_remedy'); }, go: '_close' });
+    { do: () => { takeItem('pollen', 2); takeItem('moss', 1); completeQuest('q_remedy'); questReward('q_remedy'); }, go: '_close' });
   else a.push(L('Hesan', '2 Red Pollen from desert blooms, 1 Cave Moss from the Barrow. (' + invCount('pollen') + '/2 pollen, ' + invCount('moss') + '/1 moss)'));
   a.push(L('Hesan', 'Rumor for the road: the buried kings left a door of glass under the sinkhole. Doors open for the patient.'));
   return a;

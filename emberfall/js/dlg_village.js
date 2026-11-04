@@ -39,7 +39,7 @@ DLG.rowan = () => {
     { c: [{ t: 'I\'ll gather them.', f: () => addQuest('q_tea'), go: '_close' }, { t: 'Another time.', go: '_close' }] });
   else if (G.quests['q_tea'].done) a.push(L('Rowan', 'The tea works. The village breathes easier. Thank you, emberling.'));
   else if (invCount('moonpetal') >= 3) a.push(L('Rowan', 'Moonpetals! Fresh and whole. Here — you\'ve earned this.'),
-    { do: () => { takeItem('moonpetal', 3); advanceQuest('q_tea'); questReward('q_tea'); }, go: '_close' });
+    { do: () => { takeItem('moonpetal', 3); completeQuest('q_tea'); questReward('q_tea'); }, go: '_close' });
   else a.push(L('Rowan', 'Three Moonpetals, from tall grass in the Whisperwood. (' + invCount('moonpetal') + '/3)'));
   a.push(L('Rowan', 'Travel tip: red potions heal more than they cost, if you\'re lucky with drops.'));
   return a;

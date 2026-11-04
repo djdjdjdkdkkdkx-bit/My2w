@@ -148,10 +148,11 @@ const Game = {
     Dlg.runArray(BOSS_SCENES[key].intro(), { after: () => { const m = spawnBoss(key, t.x * TILE + 8, t.y * TILE + 8); if (m) G.spawnPt = { map: G.mapKey, x: (t.x - 2) * TILE + 8, y: (t.y + 3) * TILE + 8 }; } });
   },
   afterBoss(key) {
-    F(key + '_done', 1); sparedAllCheck(); saveGame(true);
+    F(key + '_done', 1); sparedAllCheck();
     const flow = { warden: () => { this.chSet(2); addQuest('ch2'); }, sovereign: () => { this.chSet(3); addQuest('ch3'); },
       deepking: () => { Dlg.run('ch3_after'); }, marshal: () => { this.chSet(5); addQuest('fin'); toast('The Heart chamber awaits beyond the throne.', 1); } };
     (flow[key] || (() => { }))();
+    saveGame(true);
   },
   chSet(n) { if (n > G.chapter) { G.chapter = n; this.chCard(n, true); } },
   chScene(k) { Dlg.run(k); },

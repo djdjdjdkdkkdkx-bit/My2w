@@ -62,7 +62,6 @@ function campDialog() {
 function wellDialog() {
   const toss = (fn) => { if (G.p.coins < 10) { toast('You need 10 coins to make a wish.'); return; } G.p.coins -= 10; fn(); };
   if (!G.quests['q_well']) { Dlg.run('well'); return; }
-  if (G.quests['q_well'].done) { Dlg.run('well'); return; }
   if (!F('well1')) {
     Dlg.runArray([L('Well', 'You flip a coin. It falls a long, long way...'),
       { do: () => toss(() => { F('well1', 1); giveItem('shard', 1); SFX.play('shard'); burst(G.p.x, G.p.y, '#9fe8ff', 14); }) },

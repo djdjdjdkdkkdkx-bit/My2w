@@ -1,4 +1,10 @@
 'use strict';
+/* build the dialog DOM once (index.html ships an empty #dlg) */
+(function buildDlgBox() {
+  const d = $('dlg'); if (!d || $('dlgBox')) return;
+  d.innerHTML = '<div id="dlgBox" class="panel"><span id="dlgName"></span><div id="dlgText"></div><div id="dlgChoices"></div><div id="dlgHint">▼</div></div>';
+})();
+
 /* ===== dialogue runner ===== */
 const Dlg = {
   q: [], i: 0, typing: false, shown: '', full: '', cur: null, after: null,
@@ -10,7 +16,13 @@ const Dlg = {
   next() {
     if (this.i >= this.q.length) return this.close();
     const s = this.q[this.i++];
-    if (s.do) { try { s.do(); } catch (e) { console.error(e); } return this.next(); }
+    if (s.do) {
+      const q0 = this.q;
+      try { s.do(); } catch (e) { console.error(e); }
+      if (this.q !== q0) return; // do() handed control to another dialog/menu
+      if (s.go) { const k = s.go; if (k === '_close') return this.close(); return this.run(k, { after: this.after }); }
+      return this.next();
+    }
     if (s.go) { const k = s.go; if (k === '_close') return this.close(); return this.run(k, { after: this.after }); }
     if (s.br) { const k = s.br(); if (!k) return this.next(); if (k === '_close') return this.close(); return this.run(k, { after: this.after }); }
     if (s.c) { this.cur = null; this.showChoices(s.c); return; }
@@ -21,11 +33,13 @@ const Dlg = {
     $('dlgHint').style.visibility = 'hidden';
   },
   close() {
-    $('dlg').classList.add('hidden'); G.mode = 'play'; SFX.playMusic(Game.musicFor(G.mapKey));
+    $('dlg').classList.add('hidden');
+    if (G.mode === 'dialog') { G.mode = 'play'; SFX.playMusic(Game.musicFor(G.mapKey)); }
     const a = this.after; this.after = null; if (a) a();
   },
   showChoices(choices) {
-    const box = $('dlgChoices'); box.innerHTML = ''; box.classList.remove('hidden');
+    const box = $('dlgChoices'); if (!box) return this.next();
+    box.innerHTML = ''; box.classList.remove('hidden');
     $('dlgHint').style.visibility = 'hidden';
     const list = choices.filter(c => !c.cond || c.cond());
     if (!list.length) return this.next();
@@ -41,7 +55,9 @@ const Dlg = {
   pick(idx) {
     if (!this._ch) return; const c = this._ch[idx]; if (!c) return; SFX.play('uiOk'); vibrate(15);
     $('dlgChoices').classList.add('hidden'); this._ch = null;
+    const q0 = this.q;
     if (c.f) { try { c.f(); } catch (e) { console.error(e); } }
+    if (this.q !== q0 || G.mode !== 'dialog') { $('dlg').classList.add('hidden'); return; } // choice handed control elsewhere
     if (c.end) { this.q = []; this.after = null; $('dlg').classList.add('hidden'); return; }
     if (c.steps) { const more = c.steps(); this.q = this.q.slice(this.i).concat(more); this.i = 0; return this.next(); }
     if (c.go) { if (c.go === '_close') return this.close(); return this.run(c.go, { after: this.after }); }
